@@ -1,0 +1,13 @@
+.container {
+    width: 720px;
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+}
+
+
+@media screen and (max-width: 720px) {
+    .container {
+        width: 100%;
+    }
+}
