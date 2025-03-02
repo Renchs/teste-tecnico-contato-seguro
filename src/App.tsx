@@ -1,6 +1,7 @@
-import { FindAutor } from "./components/FindAutor"
-import { TableContainer } from "./components/TableContainer"
+
 import styles from "./app.module.css";
+import { FindAuthor } from "./components/FindAuthor";
+import { TableAuthor } from "./components/TableAuthor";
 
 
 function App() {
@@ -8,8 +9,8 @@ function App() {
   return (
     <>
       <section className={styles.container}>
-        <FindAutor />
-        <TableContainer />
+        <FindAuthor />
+        <TableAuthor />
       </section>
       
     </>

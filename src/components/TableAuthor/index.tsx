@@ -1,4 +1,4 @@
-import styles from "./tableContainer.module.css";
+import styles from "./tableAuthor.module.css";
 
 
 const dadosTabela = [
@@ -14,7 +14,7 @@ const dadosTabela = [
 ]
 
 
-export function TableContainer() {
+export function TableAuthor() {
     return (
         <table className={styles.containerTable}>
             <thead className={styles.tableHeader}>

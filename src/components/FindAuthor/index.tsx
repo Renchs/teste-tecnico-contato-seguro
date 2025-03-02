@@ -1,9 +1,9 @@
-import styles from "./findAutor.module.css";
+import styles from "./findAuthor.module.css";
 
 
-export function FindAutor() {
+export function FindAuthor() {
     return (
-        <section className={styles.containerFindAutor}>
+        <section className={styles.containerFindAuthor}>
             <input placeholder="Buscar por nome" type="text" />
             <div className={styles.containerFindAndOrder}>
                 <div className={styles.resultNumber}>
