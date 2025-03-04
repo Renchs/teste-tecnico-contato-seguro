@@ -1,48 +1,101 @@
 import styles from "./tableAuthor.module.css";
 
-
-const dadosTabela = [
-    { nome: "John Doe", email: "johndoe@example.com" },
-    { nome: "Jane Doe", email: "janedoe@example.com" },
-    { nome: "Alice Johnson", email: "alicejohnson@example.com" },
-    { nome: "Bob Smith", email: "bobsmith@example.com" },
-    { nome: "Charlie Brown", email: "charliebrown@example.com" },
-    { nome: "David Wilson", email: "davidwilson@example.com" },
-    { nome: "Emily Davis", email: "emilydavis@example.com" },
-    { nome: "Frank Miller", email: "frankmiller@example.com" },
-    { nome: "Grace Thompson", email: "gracetompson@example.com" },
-]
-
+import { TableFieldValue } from "../TableFieldValue";
+import { useDataContext } from "../../hooks/useDataContext";
+import { useState } from "react";
+import { ModalDetailsAuthor } from "../ModalDetailsAuthor";
+import { ModalFormAuthor } from "../ModalFormAuthor";
+import { ModalDelete } from "../ModalDelete";
+import { Author } from "../../context/DataProvider";
+import { ButtonPagination } from "../ButtonPagination";
 
 export function TableAuthor() {
+    const { dataAuthor, setDataAuthor } = useDataContext();
+    const [dataAuthorFilter, setDataAuthorFilter] = useState<Author[]>();
+
+    const [selectDeleteAuthor, setSelectDeleteAuthor] = useState<number>();
+    const [modalDeleteAuthor, setModalDeleteAuthor] = useState(false);
+
+    const [selectDetailsAuthor, setSelectDetailsAuthor] = useState<number>();
+    const [modalDetailsAuthor, setModalDetailsAuthor] = useState(false);
+
+    const [selectEditAuthor, setSelectEditAuthor] = useState<number>();
+    const [modalEditAuthor, setModalEditAuthor] = useState(false);
+
+    const onDeleteAuthor = () => {
+        const filteredAuthors = dataAuthor.filter((author) => author.id !== selectDeleteAuthor);
+
+        setDataAuthor(filteredAuthors);
+
+        setModalDeleteAuthor(false);
+    }
+
+    const handleSelectDetailsAuthor = (id: number) => {
+        setSelectDetailsAuthor(id);
+        setModalDetailsAuthor(true);
+    }
+
+    const handleDeleteAuthor = (id: number) => {
+        setSelectDeleteAuthor(id);
+        setModalDeleteAuthor(true);
+    }
+
+    const handleEditAuthor = (id: number) => {
+        setSelectEditAuthor(id);
+        setModalEditAuthor(true);
+    }
+
     return (
-        <table className={styles.containerTable}>
-            <thead className={styles.tableHeader}>
-                <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Opções</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    dadosTabela.map((dados) => (
-                        <tr className={styles.tableBodyValues} key={dados.nome}>
-                            <td>{dados.nome}</td>
-                            <td>{dados.email}</td>
-                            <td>
-                                <select>
-                                    <option>Exibir</option>
-                                    <option>Detalhes</option>
-                                    <option>Livros</option>
-                                    <option>Editar</option>
-                                    <option>Deletar</option>
-                                </select>
-                            </td>
+        <>
+            {
+                modalDeleteAuthor && <ModalDelete
+                    title="Deletar Autor"
+                    message="Tem certeza de que deseja excluir este autor?"
+                    onDelete={onDeleteAuthor}
+                    onClose={() => setModalDeleteAuthor(false)}
+                />
+            }
+            {
+                modalDetailsAuthor && <ModalDetailsAuthor
+                    author={dataAuthor.find((user) => user.id === selectDetailsAuthor)!}
+                    onClose={() => setModalDetailsAuthor(false)}
+                />
+            }
+
+            {
+                modalEditAuthor && <ModalFormAuthor
+                    isEditing authorEdit={dataAuthor.find((user) => user.id === selectEditAuthor)!}
+                    onClose={() => setModalEditAuthor(false)}
+                />
+            }
+
+            <section className={styles.containerValueTable}>
+                <table className={styles.containerTable}>
+                    <thead className={styles.tableHeader}>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Opções</th>
                         </tr>
-                    ))
-                }
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        {
+                            dataAuthorFilter?.filter((author) => author !== undefined).map((dados) => (
+                                <TableFieldValue
+                                    key={dados.id}
+                                    id={dados.id}
+                                    email={dados.email || "Email não registrado."}
+                                    name={dados.nome}
+                                    onDelete={handleDeleteAuthor}
+                                    onDetails={handleSelectDetailsAuthor}
+                                    onEdit={handleEditAuthor}
+                                />
+                            ))
+                        }
+                    </tbody>
+                </table>
+            </section>
+            <ButtonPagination data={dataAuthor} setDataFilter={(setDataAuthorFilter)} />
+        </>
     )
 }

@@ -1,0 +1,15 @@
+.tableBodyValues td {
+    padding: 16px 10px;
+}
+
+.tableBodyValues {
+    border: 1px solid var(--bg-color-primary);
+    border-left: none;
+    border-right: none;
+    border-radius: 6px;
+    height: 60px;
+}
+
+.tableBodyValues>td:last-child {
+    font-size: 12px;
+}

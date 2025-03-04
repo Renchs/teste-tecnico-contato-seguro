@@ -1,0 +1,35 @@
+.modalDelete {
+    width: 350px;
+    height: 140px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+}
+
+
+.containerButton {
+    display: flex;
+    gap: 10px;
+}
+
+.containerButton>button {
+    width: 100px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.containerButton>button:first-child {
+    background-color: gray;
+    color: white;
+}
+
+.containerButton>button:last-child {
+    background-color: red;
+    color: white;
+}

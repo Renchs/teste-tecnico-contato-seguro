@@ -1,0 +1,29 @@
+.tableBodyValues td {
+    padding: 16px 4px;
+}
+
+.tableBodyValues {
+    border: 1px solid var(--bg-color-primary);
+    border-left: none;
+    border-right: none;
+    border-radius: 6px;
+    height: 60px;
+}
+
+.tableBodyValues>td:last-child {
+    font-size: 12px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .tableBodyValues>td:nth-child(2) {
+        display: none;
+    }
+        
+}
+
+@media screen and (max-width: 600px) {
+    .tableBodyValues>td:nth-child(3) {
+        display: none;
+    }
+}

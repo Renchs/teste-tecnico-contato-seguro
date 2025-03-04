@@ -1,0 +1,23 @@
+.containerButtonPrevProx {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.containerButtonPrevProx button {
+    width: 120px;
+    height: 35px;
+    border-radius: 4px;
+    background: var(--bg-color-primary);
+    color: white;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.ocultButton {
+    visibility: hidden;
+}

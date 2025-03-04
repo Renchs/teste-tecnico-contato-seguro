@@ -20,7 +20,6 @@
 .containerValueTable {
     height: 652px;
     border: 1px solid var(--bg-color-primary);
-
 }
 
 tbody tr:nth-child(even) {
@@ -37,15 +36,18 @@ tbody tr:nth-child(even) {
     font-size: 12px;
 }
 
-
-
-
 @media screen and (max-width: 768px) {
-    .containerTable {
+    .containerTable, .containerValueTable {
         width: 100%;
     }
 
-        .containerValueTable {
-            height: auto;
-        }
+    .tableHeader>tr>th:nth-child(2) {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .tableHeader>tr>th:nth-child(3) {
+        display: none;
+    }
 }

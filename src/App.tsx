@@ -1,18 +1,27 @@
 
+import { BrowserRouter, Route, Routes } from "react-router";
 import styles from "./app.module.css";
-import { FindAuthor } from "./components/FindAuthor";
+import { Header } from "./components/Header";
+import { TableBook } from "./components/TableBook";
+
+import { DataProvider } from "./context/DataProvider";
 import { TableAuthor } from "./components/TableAuthor";
 
-
 function App() {
-
   return (
     <>
-      <section className={styles.container}>
-        <FindAuthor />
-        <TableAuthor />
-      </section>
-      
+      <BrowserRouter>
+        <DataProvider>
+          <div className={styles.container}>
+            <Header />
+            <Routes>
+              <Route path="/" element={<TableAuthor />} />
+              <Route path="/books" element={<TableBook />} />
+            </Routes>
+          </div>
+        </DataProvider>
+      </BrowserRouter>
+
     </>
   )
 }
