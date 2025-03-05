@@ -10,7 +10,7 @@ import { TableAuthor } from "./components/TableAuthor";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/teste-tecnico-contato-seguro">
         <DataProvider>
           <div className={styles.container}>
             <Header />
