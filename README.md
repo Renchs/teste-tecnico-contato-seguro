@@ -2,6 +2,9 @@
 
 Esse projeto e um teste técnico feito para uma vaga de estágio no contato seguro.
 
+### Deploy do projeto
+<a target="_blank" href="https://renchs.github.io/teste-tecnico-contato-seguro/">Aqui</a>
+
 ## Detalhas do desafio
 
 Desenvolver um CRUD de livros e autores.
