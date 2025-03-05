@@ -18,14 +18,13 @@ export function ButtonPagination<T>({ data, setDataFilter }: IButtonPagination<T
 
     const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
 
-    // Atualiza os dados filtrados no componente pai apenas se currentData realmente mudar
     const prevDataRef = useRef<T[]>([]);
 
     useEffect(() => {
-        // Se o valor de currentData for diferente do anterior, atualiza o estado do filtro
+    
         if (JSON.stringify(prevDataRef.current) !== JSON.stringify(currentData)) {
             setDataFilter(currentData);
-            prevDataRef.current = currentData; // Atualiza o valor anterior
+            prevDataRef.current = currentData; 
         }
     }, [currentData, setDataFilter]);
 

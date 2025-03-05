@@ -5,13 +5,13 @@ import { useDataContext } from "../../hooks/useDataContext";
 import { useState } from "react";
 import { ModalDetailsAuthor } from "../ModalDetailsAuthor";
 import { ModalFormAuthor } from "../ModalFormAuthor";
-import { ModalDelete } from "../ModalDelete";
 
 import { ButtonPagination } from "../ButtonPagination";
 import { IAuthor } from "../../interfaces/IAuthor";
+import { ModalDeleteAuthor } from "../ModalDeleteAuthor";
 
 export function TableAuthor() {
-    const { dataAuthor, setDataAuthor } = useDataContext();
+    const { dataAuthor } = useDataContext();
     const [dataAuthorFilter, setDataAuthorFilter] = useState<IAuthor[]>();
 
     const [selectDeleteAuthor, setSelectDeleteAuthor] = useState<number>();
@@ -23,13 +23,6 @@ export function TableAuthor() {
     const [selectEditAuthor, setSelectEditAuthor] = useState<number>();
     const [modalEditAuthor, setModalEditAuthor] = useState(false);
 
-    const onDeleteAuthor = () => {
-        const filteredAuthors = dataAuthor.filter((author) => author.id !== selectDeleteAuthor);
-
-        setDataAuthor(filteredAuthors);
-
-        setModalDeleteAuthor(false);
-    }
 
     const handleSelectDetailsAuthor = (id: number) => {
         setSelectDetailsAuthor(id);
@@ -49,12 +42,7 @@ export function TableAuthor() {
     return (
         <>
             {
-                modalDeleteAuthor && <ModalDelete
-                    title="Deletar Autor"
-                    message="Tem certeza de que deseja excluir este autor?"
-                    onDelete={onDeleteAuthor}
-                    onClose={() => setModalDeleteAuthor(false)}
-                />
+                modalDeleteAuthor && <ModalDeleteAuthor id={selectDeleteAuthor!} onClose={() => setModalDeleteAuthor(false)} />
             }
             {
                 modalDetailsAuthor && <ModalDetailsAuthor
@@ -92,8 +80,6 @@ export function TableAuthor() {
                                     onEdit={handleEditAuthor}
                                 />
                             ))
-                            
-                            
                         }
                     </tbody>
                 </table>

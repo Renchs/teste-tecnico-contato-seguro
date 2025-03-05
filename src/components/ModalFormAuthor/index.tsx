@@ -38,7 +38,7 @@ export function ModalFormAuthor({ onClose, authorEdit, isEditing }: IModalFormAu
             return;
         }
 
-        if (email !== "" && dataAuthor.some((author) => author.email === email)) {
+        if (email !== "" && dataAuthor.some((author) => author.email === email && author.id !== authorEdit?.id)) {
             setErrorEmailMsg("Email já cadastrado");
             return;
         }

@@ -11,14 +11,12 @@ export function ModalDeleteAuthor({ onClose, id }: IModalDeleteAuthor) {
     const { dataAuthor, setDataAuthor, dataBook, setDataBook } = useDataContext();
 
     const onDelete = () => {
-        const filteredAuthors = dataAuthor.filter((author) => author.id !== id);
-
-        const filterBookAuthors = dataBook.filter((book) => book.autorId !== id);
-
-        setDataAuthor(filteredAuthors);
-        setDataBook(filterBookAuthors);
         
-        onClose();
+        setDataAuthor(dataAuthor.filter((author) => author.id !== id));
+        
+        setDataBook(dataBook.filter((book) => book.autorId !== id));
+
+        onClose(); 
     }
     
     return (
