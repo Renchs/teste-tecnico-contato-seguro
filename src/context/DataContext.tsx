@@ -1,11 +1,13 @@
 import { createContext } from "react";
-import { Author, Book } from "./DataProvider";
+import { IAuthor } from "../interfaces/IAuthor";
+import { IBook } from "../interfaces/IBook";
+
 
 interface DataContextType {
-    dataAuthor: Author[];
-    dataBook: Book[];
-    setDataAuthor: React.Dispatch<React.SetStateAction<Author[]>>;
-    setDataBook: React.Dispatch<React.SetStateAction<Book[]>>;
+    dataAuthor: IAuthor[];
+    dataBook: IBook[];
+    setDataAuthor: React.Dispatch<React.SetStateAction<IAuthor[]>>;
+    setDataBook: React.Dispatch<React.SetStateAction<IBook[]>>;
 }
 
 

@@ -5,12 +5,12 @@ import { TableFieldBook } from "../TableFieldBook";
 import { ModalDelete } from "../ModalDelete";
 import { ModalDetailsBook } from "../ModalDetailsBook";
 import { ModalFormBook } from "../ModalFormBook";
-import { Book } from "../../context/DataProvider";
 import { ButtonPagination } from "../ButtonPagination";
+import { IBook } from "../../interfaces/IBook";
 
 export function TableBook() {
     const { dataBook, setDataBook } = useDataContext();
-    const [dataBookFilter, setDataBookFilter] = useState<Book[]>()
+    const [dataBookFilter, setDataBookFilter] = useState<IBook[]>()
 
     const [modalDetailsBook, setModalDetailsBook] = useState(false);
     const [modalDeleteBook, setModalDeleteBook] = useState(false);

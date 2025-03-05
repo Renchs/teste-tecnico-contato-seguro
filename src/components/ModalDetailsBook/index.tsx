@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { Book } from "../../context/DataProvider";
 import { useDataContext } from "../../hooks/useDataContext"
 import { ModalDetails } from "../ModalDetails";
+import { IBook } from "../../interfaces/IBook";
 
 
 interface IModalDetailsBook {
-    book: Book;
+    book: IBook;
     onClose: () => void;
 }
 
 export function ModalDetailsBook({ book, onClose }: IModalDetailsBook) {
     const { dataAuthor } = useDataContext();
     const [messageBookPage, setMessageBookPage] = useState<string>("");
-    const author = dataAuthor.find(author => author.id === book.autorId)?.nome || "";
+    const author = dataAuthor.find(author => author.id === book.autorId)?.name || "";
 
     useEffect(() => {
         if (book.paginas === undefined || book.paginas <= 0) {

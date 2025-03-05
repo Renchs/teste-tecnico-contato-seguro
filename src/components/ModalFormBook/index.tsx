@@ -4,13 +4,14 @@ import { ContainerModal } from "../ContainerModal";
 import { useDataContext } from "../../hooks/useDataContext";
 import { Form } from "../Form";
 import { useEffect, useState } from "react";
-import { Book } from "../../context/DataProvider";
+import { IBook } from "../../interfaces/IBook";
+
 
 
 interface IModalFormBook {
     onClose: () => void;
     isEditing: boolean;
-    bookEdit?: Book;
+    bookEdit?: IBook;
 }
 
 export function ModalFormBook({ onClose, bookEdit, isEditing }: IModalFormBook) {
@@ -33,6 +34,7 @@ export function ModalFormBook({ onClose, bookEdit, isEditing }: IModalFormBook) 
         
         if (!title.match(/^(?=.*[A-Za-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+$/)) {
             setErrorTitleMsg("O titulo não pode ter somente numeros.")
+            return;
         }
 
         if (authorId === -1) {
@@ -50,7 +52,7 @@ export function ModalFormBook({ onClose, bookEdit, isEditing }: IModalFormBook) 
         }
 
         else {
-            const book: Book = {
+            const book: IBook = {
                 id: dataBook.length + 1,
                 titulo: title,
                 autorId: authorId,
@@ -85,14 +87,14 @@ export function ModalFormBook({ onClose, bookEdit, isEditing }: IModalFormBook) 
                         {
                             dataAuthor.map((author) => (
                                 <option key={author.id} value={author.id}>
-                                    {author.nome}
+                                    {author.name}
                                 </option>
                             ))
                         }
                     </select>
                     <div>
                         <button>{isEditing ? "Atualizar" : "Cadastrar"}</button>
-                        <button>Cancelar</button>
+                        <button onClick={onClose}>Cancelar</button>
                     </div>
 
             </Form>

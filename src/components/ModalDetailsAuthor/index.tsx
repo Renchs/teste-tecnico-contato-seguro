@@ -1,10 +1,11 @@
-import { Author } from "../../context/DataProvider";
+
 import { useDataContext } from "../../hooks/useDataContext";
+import { IAuthor } from "../../interfaces/IAuthor";
 import { ModalDetails } from "../ModalDetails";
 
 
 interface IModalDetailsAuthor {
-    author: Author;
+    author: IAuthor;
     onClose: () => void;
 }
 
@@ -15,7 +16,7 @@ export function ModalDetailsAuthor({ author, onClose }: IModalDetailsAuthor) {
     const bookAuthor = dataBook.filter(book => book.autorId === author.id).length;
 
     return (
-        <ModalDetails title={author.nome} onClose={onClose}>
+        <ModalDetails title={author.name} onClose={onClose}>
             <p>Email: {author.email}</p>
             <p>Número de livros registrados: {bookAuthor}</p>
         </ModalDetails>

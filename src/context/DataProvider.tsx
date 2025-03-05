@@ -1,20 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { DataContext } from "./DataContext";
-
-
-
-export interface Author {
-    id: number;
-    nome: string;
-    email?: string;
-}
-
-export interface Book {
-    id: number;
-    titulo: string;
-    autorId: number;
-    paginas?: number;
-}
+import { IAuthor } from "../interfaces/IAuthor";
+import { IBook } from "../interfaces/IBook";
 
 
 
@@ -26,34 +13,34 @@ interface IDataProviderProps {
 export function DataProvider({ children }: IDataProviderProps) {
 
     const initialAuthors = [
-        { id: 1, nome: "John Doe", email: "johndoe@example.com" },
-        { id: 2, nome: "Jane Doe", email: "janedoe@example.com" },
-        { id: 3, nome: "Alice Johnson", email: "alicejohnson@example.com" },
-        { id: 4, nome: "Bob Smith", email: "bobsmith@example.com" },
-        { id: 5, nome: "Charlie Brown", email: "charliebrown@example.com" },
-        { id: 6, nome: "David Wilson", email: "davidwilson@example.com" },
-        { id: 7, nome: "Emily Davis", email: "emilydavis@example.com" },
-        { id: 8, nome: "Frank Miller", email: "frankmiller@example.com" },
-        { id: 9, nome: "Grace Thompson", email: "gracetompson@example.com" },
-        { id: 10, nome: "Hannah Moore", email: "hannahmoore@example.com" },
-        { id: 11, nome: "Irene Lee", email: "irenelee@example.com" },
-        { id: 12, nome: "Jack Wilson", email: "jackwilson@example.com" },
-        { id: 13, nome: "Kathy Johnson", email: "kathyjohnson@example.com" },
-        { id: 14, nome: "Liam Harris", email: "liamharris@example.com" },
-        { id: 15, nome: "Megan Clark", email: "meganclark@example.com" },
-        { id: 16, nome: "Nathan Evans", email: "nathanevans@example.com" },
-        { id: 17, nome: "Olivia White", email: "oliviawhite@example.com" },
-        { id: 18, nome: "Paul Martin", email: "paulmartin@example.com" },
-        { id: 19, nome: "Quincy Adams", email: "quincyadams@example.com" },
-        { id: 20, nome: "Rita Perez", email: "ritaperez@example.com" },
-        { id: 21, nome: "Sam King", email: "samking@example.com" },
-        { id: 22, nome: "Tina Harris", email: "tinaharris@example.com" },
-        { id: 23, nome: "Ursula Lopez", email: "ursulalopez@example.com" },
-        { id: 24, nome: "Victor Wright", email: "victorwright@example.com" },
-        { id: 25, nome: "Wendy Scott", email: "wendyscott@example.com" },
-        { id: 26, nome: "Xander Moore", email: "xandermoore@example.com" },
-        { id: 27, nome: "Yvonne Nelson", email: "yvonnelson@example.com" },
-        { id: 28, nome: "Zachary Carter", email: "zacharycarter@example.com" }
+        { id: 1, name: "John Doe", email: "johndoe@example.com" },
+        { id: 2, name: "Jane Doe", email: "janedoe@example.com" },
+        { id: 3, name: "Alice Johnson", email: "alicejohnson@example.com" },
+        { id: 4, name: "Bob Smith", email: "bobsmith@example.com" },
+        { id: 5, name: "Charlie Brown", email: "charliebrown@example.com" },
+        { id: 6, name: "David Wilson", email: "davidwilson@example.com" },
+        { id: 7, name: "Emily Davis", email: "emilydavis@example.com" },
+        { id: 8, name: "Frank Miller", email: "frankmiller@example.com" },
+        { id: 9, name: "Grace Thompson", email: "gracetompson@example.com" },
+        { id: 10, name: "Hannah Moore", email: "hannahmoore@example.com" },
+        { id: 11, name: "Irene Lee", email: "irenelee@example.com" },
+        { id: 12, name: "Jack Wilson", email: "jackwilson@example.com" },
+        { id: 13, name: "Kathy Johnson", email: "kathyjohnson@example.com" },
+        { id: 14, name: "Liam Harris", email: "liamharris@example.com" },
+        { id: 15, name: "Megan Clark", email: "meganclark@example.com" },
+        { id: 16, name: "Nathan Evans", email: "nathanevans@example.com" },
+        { id: 17, name: "Olivia White", email: "oliviawhite@example.com" },
+        { id: 18, name: "Paul Martin", email: "paulmartin@example.com" },
+        { id: 19, name: "Quincy Adams", email: "quincyadams@example.com" },
+        { id: 20, name: "Rita Perez", email: "ritaperez@example.com" },
+        { id: 21, name: "Sam King", email: "samking@example.com" },
+        { id: 22, name: "Tina Harris", email: "tinaharris@example.com" },
+        { id: 23, name: "Ursula Lopez", email: "ursulalopez@example.com" },
+        { id: 24, name: "Victor Wright", email: "victorwright@example.com" },
+        { id: 25, name: "Wendy Scott", email: "wendyscott@example.com" },
+        { id: 26, name: "Xander Moore", email: "xandermoore@example.com" },
+        { id: 27, name: "Yvonne Nelson", email: "yvonnelson@example.com" },
+        { id: 28, name: "Zachary Carter", email: "zacharycarter@example.com" }
     ];
 
     const initialBooks = [
@@ -89,7 +76,7 @@ export function DataProvider({ children }: IDataProviderProps) {
         { id: 30, titulo: "O Silêncio das Sombras", paginas: 330, autorId: 3 }
     ];
 
-    const [dataAuthor, setDataAuthor] = useState<Author[]>(() => {
+    const [dataAuthor, setDataAuthor] = useState<IAuthor[]>(() => {
         const storedAuthors = localStorage.getItem("authors");
         if (storedAuthors) {
             return JSON.parse(storedAuthors);
@@ -97,7 +84,7 @@ export function DataProvider({ children }: IDataProviderProps) {
         return initialAuthors; 
     });
 
-    const [dataBook, setDataBook] = useState<Book[]>(() => {
+    const [dataBook, setDataBook] = useState<IBook[]>(() => {
         const storedBooks = localStorage.getItem("books");
         if (storedBooks) {
             return JSON.parse(storedBooks);

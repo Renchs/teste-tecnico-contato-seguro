@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDataContext } from "../../hooks/useDataContext";
-import { Author } from "../../context/DataProvider";
+
 import { ContainerModal } from "../ContainerModal";
 import { Form } from "../Form";
+import { IAuthor } from "../../interfaces/IAuthor";
 
 
 
 interface IModalFormAuthor {
     isEditing: boolean;
-    authorEdit?: Author;
+    authorEdit?: IAuthor;
     onClose: () => void;
 }
 
@@ -23,7 +24,7 @@ export function ModalFormAuthor({ onClose, authorEdit, isEditing }: IModalFormAu
 
     useEffect(() => {
         if (isEditing && authorEdit) {
-            setName(authorEdit?.nome);
+            setName(authorEdit?.name);
             setEmail(authorEdit?.email || "");
         }
     }, [authorEdit, isEditing])
@@ -33,7 +34,7 @@ export function ModalFormAuthor({ onClose, authorEdit, isEditing }: IModalFormAu
         event.preventDefault();
 
         if (!name.match(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/)) {
-            setErrorNameMsg("Nome inválido somente letras são permitidas");
+            setErrorNameMsg("Nome inválido. Somente letras são permitidas.");
             return;
         }
 
@@ -43,14 +44,14 @@ export function ModalFormAuthor({ onClose, authorEdit, isEditing }: IModalFormAu
         }
 
         if (isEditing && authorEdit) {
-            setDataAuthor(dataAuthor.map((author) => author.id === authorEdit.id ? { ...author, nome: name, email } : author))
+            setDataAuthor(dataAuthor.map((author) => author.id === authorEdit.id ? { ...author, name, email } : author))
             onClose();
         }
 
         else {
-            const newAuthor: Author = {
+            const newAuthor: IAuthor = {
                 id: dataAuthor.length + 1,
-                nome: name,
+                name,
                 email,
             }
             setDataAuthor([...dataAuthor, newAuthor]);
@@ -87,7 +88,7 @@ export function ModalFormAuthor({ onClose, authorEdit, isEditing }: IModalFormAu
 
                 <div>
                     <button type="submit">{isEditing ? "Editar" : "Cadastrar"}</button>
-                    <button onClick={onClose} type="button">Cancelar</button>
+                    <button onClick={onClose} >Cancelar</button>
                 </div>
 
             </Form>

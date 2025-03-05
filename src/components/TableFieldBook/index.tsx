@@ -17,7 +17,7 @@ interface ITableFieldBook {
 export function TableFieldBook({ id, authorId, title, pages, onDelete, onDetails, onEdit }: ITableFieldBook) {
     const { dataAuthor } = useDataContext();
     const [selectOptionBook, setSelectOptionBook] = useState("");
-    const findAuthor = dataAuthor.find((author) => author.id === authorId)?.nome || "";
+    const findAuthor = dataAuthor.find((author) => author.id === authorId)?.name || "";
    
     
     const resetSelect = () => {

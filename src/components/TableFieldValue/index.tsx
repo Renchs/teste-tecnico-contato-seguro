@@ -12,7 +12,6 @@ interface ITableFieldValue {
 
 export function TableFieldValue({ id, email, name, onDelete, onDetails, onEdit }: ITableFieldValue) {
     const [selecOptionAuthor, setSelectOptionAuthor] = useState("");
-
     const resetSelect = () => {
         setSelectOptionAuthor("");
     }

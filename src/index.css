@@ -2,10 +2,10 @@
 
 
 :root {
-    --bg-color-primary: #ED4D1B;
+    --bg-color-primary: rgb(237, 77, 29);
     --bg-color-secondary: #F0F0F0;
 }
-
+/* #ED4D1B */
 * {
     margin: 0;
     padding: 0;
