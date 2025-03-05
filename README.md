@@ -1,54 +1,75 @@
-# React + TypeScript + Vite
+# Mundo Literário
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esse projeto e um teste técnico feito para uma vaga de estágio no contato seguro.
 
-Currently, two official plugins are available:
+## Detalhas do desafio
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Desenvolver um CRUD de livros e autores.
 
-## Expanding the ESLint configuration
+### Modelos utilizados
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+#### Livro
+- id (obrigatório)
+- name (obrigatório)
+- author_id (obrigatório)
+- pages (opcional)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+#### Autor
+- id (obrigatório)
+- name (obrigatório)
+- email (opcional)
+
+## Funcionalidades
+#### Livros
+- Criar um livro (modal)  ✅
+- Visualizar todos os livros (tabela)  ✅
+- Visualizar um livro específico (modal)  ✅
+- Excluir um livro (alerta)  ✅
+#### Autor
+- Criar um autor (modal)  ✅
+- Visualizar todos os autores (tabela)  ✅
+- Visualizar um autor específico (modal)  ✅
+- Excluir um autor (alerta)  ✅
+
+## O que foi utilizado
+
+**Front-end:** React, Typescrit, CSS Module, React Router
+
+## Prévias do projeto
+
+<h3>Notebook</h3>
+<img src="https://github.com/user-attachments/assets/0e7b7b6e-1700-4972-abcf-49441b07b057" width="600" />
+
+<h3>Tablet</h3>
+<img src="https://github.com/user-attachments/assets/16b1394c-3e48-4ef1-8e39-192dabd4c9ab" height="500" />
+
+<h3>Smartphone</h3>
+<img src="https://github.com/user-attachments/assets/41a9b78f-f878-44dc-a1eb-76aedefc984f" height="500" />
+
+
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/Renchs/teste-tecnico-contato-seguro.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Entre no diretório do projeto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+  cd teste-tenico-contato-seguro
 ```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run dev
+```
+
